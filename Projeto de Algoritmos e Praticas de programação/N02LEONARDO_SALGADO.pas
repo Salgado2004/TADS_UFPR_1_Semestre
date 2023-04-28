@@ -1,33 +1,43 @@
 Program N02LEONARDO_SALGADO;
 //Leonardo Felipe Salgado
 
-{FUP que leia uma lista de números inteiros, terminada pelo número 0 e que, para cada número lido, 
-mostre o próprio número e a relação de seus divisores.}
+{FUP que leia uma lista de nÃºmeros inteiros, terminada pelo nÃºmero 0 e que, para cada nÃºmero lido, 
+mostre o prÃ³prio nÃºmero e a relaÃ§Ã£o de seus divisores.}
 
-var num, divs, result: integer;
+var num, result: integer;
 		loop: string[3] = 'sim';
+		
+procedure getDivisores(num:integer);
+	var divs: integer;
+	begin
+		divs := num;
+		if (divs < 0) then
+			divs := divs * -1;
+		writeln('Divisores: ');
+		repeat
+			result := num mod divs;
+			if (result = 0) then
+				writeln('		', divs);
+			divs := divs-1;
+		until divs = 0;
+	end;
 
 Begin
-	writeln('Trabalho 2: Um número e seus divisores');
+	writeln('Trabalho 2: Um nÃºmero e seus divisores');
 	while (loop = 'sim') do
 		begin
 			writeln();
-			writeln('Digite um número inteiro e pressione Enter: ');
+			writeln('Digite um nÃºmero inteiro e pressione Enter: ');
 			readln(num);   
-			if (num = 0) then break;
-			writeln('Número lido: ', num);
-			divs := num;
-			if (divs < 0) then
-				divs := divs * -1;
-			writeln('Divisores: ');
-			repeat
-				result := num mod divs;
-				if (result = 0) then
-					writeln('		', divs);
-				divs := divs-1;
-			until divs = 0; 
+			if (num = 0) then 
+				begin
+			  	write('ERRO: 0 nÃ£o possui divisores');
+					break;
+				end;
+			writeln('NÃºmero lido: ', num);
+			getDivisores(num);
 			writeln();
-			writeln('Deseja continuar? sim/não');
+			writeln('Deseja continuar? sim/nÃ£o');
 			readln(loop);
 		end;
 End.
