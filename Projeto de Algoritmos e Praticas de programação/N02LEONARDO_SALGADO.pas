@@ -1,5 +1,5 @@
 Program N02LEONARDO_SALGADO;
-//Leonardo Felipe Salgado
+//Feito por Leonardo Felipe Salgado
 
 {FUP que leia uma lista de números inteiros, terminada pelo número 0 e que, para cada número lido, 
 mostre o próprio número e a relação de seus divisores.}
