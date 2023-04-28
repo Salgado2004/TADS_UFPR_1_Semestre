@@ -1,26 +1,26 @@
 Program N01LEONARDO_SALGADO;
-//Leonardo Felipe Salgado
+//Feito por Leonardo Felipe Salgado
 
-{FUP que leia dois n˙meros e a operaÁ„o aritmÈtica desejada (+, ñ, *, /). ApÛs a leitura calcule, 
-SE POSSÕVEL e mostre a resposta da operaÁ„o realizada. Se n„o for possÌvel realizar a operaÁ„o, 
-mostrar a palavra ERRO e a resposta que ser· 0(zero).}
+{FUP que leia dois n√∫meros e a opera√ß√£o aritm√©tica desejada (+, ‚Äì, *, /). Ap√≥s a leitura calcule, 
+SE POSS√çVEL e mostre a resposta da opera√ß√£o realizada. Se n√£o for poss√≠vel realizar a opera√ß√£o, 
+mostrar a palavra ERRO e a resposta que ser√° 0(zero).}
 
-//VERS√O COM IF
+//VERS√ÉO COM IF
 
 var n1, n2, result: real;
 		ops: string[1];
 
 Begin
-	writeln('Trabalho 1: Calculador b·sico');
+	writeln('Trabalho 1: Calculador b√°sico');
 	writeln();
-	writeln('Digite o primeito n˙mero e pressione Enter: ');
+	writeln('Digite o primeito n√∫mero e pressione Enter: ');
 	readln(n1);
-	writeln('Digite o segundo n˙mero e pressione Enter: ');
+	writeln('Digite o segundo n√∫mero e pressione Enter: ');
 	readln(n2);
-	writeln('Digite a operaÁ„o desejada (+, -, *, /) e pressione Enter: ');
+	writeln('Digite a opera√ß√£o desejada (+, -, *, /) e pressione Enter: ');
 	readln(ops);
 	writeln();
-	writeln('Realizando operaÁ„o: ', n1, ops, n2);
+	writeln('Realizando opera√ß√£o: ', n1, ops, n2);
 	if (ops = '+') then
 		begin
 			result := n1+n2;
@@ -39,35 +39,35 @@ Begin
 	if (ops = '/') then
 		begin
 			if (n2 = 0) then
-				writeln('ERRO: Divis„o por 0')
+				writeln('ERRO: Divis√£o por 0')
 			else
 				result := n1/n2;
 				writeln('Resultado: ', result);
 		end;
 End.
 
-// VERS√O COM CASE
+// VERS√ÉO COM CASE
 
 {var n1, n2, result: real;
 		ops: char;
 
 Begin
-	writeln('Trabalho 1: Calculador b·sico');
+	writeln('Trabalho 1: Calculador b√°sico');
 	writeln();
-	writeln('Digite o primeito n˙mero e pressione Enter: ');
+	writeln('Digite o primeito n√∫mero e pressione Enter: ');
 	readln(n1);
-	writeln('Digite o segundo n˙mero e pressione Enter: ');
+	writeln('Digite o segundo n√∫mero e pressione Enter: ');
 	readln(n2);
-	writeln('Digite a operaÁ„o desejada (+, -, *, /) e pressione Enter: ');
+	writeln('Digite a opera√ß√£o desejada (+, -, *, /) e pressione Enter: ');
 	readln(ops);
 	writeln();
-	writeln('Realizando operaÁ„o: ', n1, ops, n2);
+	writeln('Realizando opera√ß√£o: ', n1, ops, n2);
 	case ops of
 		'+': result := n1+n2;
 		'-': result := n1-n2;
 		'*': result := n1*n2;
 		'/': if (n2 = 0) then
-					writeln('ERRO: Divis„o por 0')
+					writeln('ERRO: Divis√£o por 0')
 				 else
 					result := n1/n2;
 	end;
