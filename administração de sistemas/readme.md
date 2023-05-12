@@ -1,12 +1,12 @@
-# Objetivo geral
+## Objetivo geral
 Ao final do curso o aluno será capaz de administrar sistemas computacionais.
 
-# Objetivo específico
+## Objetivo específico
 Realizar atividades de instalação e configuração de software, gerenciamento de dispositivos, comandos,
 operações e ferramentas com sistemas operacionais modernos, gerenciamento do sistema e automatização
 de rotinas.
 
-# Unidades do programa (Desdobramento da área de conhecimento)
+## Unidades do programa (Desdobramento da área de conhecimento)
 - Noções de Linux e outros sistemas POSIX;
 - Instalação básica e avançada do sistema operacional;
 - Editores de texto e uso do terminal;
