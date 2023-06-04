@@ -1,9 +1,9 @@
 Program N07LEONARDO_SALGADO;
 //Feito por Leonardo Felipe Salgado
 
-{FUP que possibilite mostrar os dados (veja leinddir.pas) do arquivo CAND.IND em ordem :  1 – Inscrição 
-ou, 2 – Alfabética ou, 3 – Cpf ou, 4 - Cargo e alfabética dentro do cargo. Dar as quatro opções para o 
-usuário escolher uma delas.}
+{FUP que possibilite mostrar os dados (veja leinddir.pas) do arquivo CAND.IND em ordem :  1 â€“ InscriÃ§Ã£o 
+ou, 2 â€“ AlfabÃ©tica ou, 3 â€“ Cpf ou, 4 - Cargo e alfabÃ©tica dentro do cargo. Dar as quatro opÃ§Ãµes para o 
+usuÃ¡rio escolher uma delas.}
 uses bibliont;
 
 const cargos:array [1..12] of string[22]=
@@ -17,20 +17,19 @@ var arq: file of regis;
     relatorio: string[20];
     a, b, contlin, pagina, tot, posi, opt: integer;
     totcargos: array[1..12] of integer;
-    passe: boolean;
     vet: vetor;
 
 Begin
  writeln('------------------------------------------');
- writeln('| Trabalho 07: Ordenação dos candidatos  |');
+ writeln('| Trabalho 07: OrdenaÃ§Ã£o dos candidatos  |');
  writeln('|                                        |');
- writeln('| Como você deseja ordenar os candidatos?|');
- writeln('| 1 - Número de inscrição                |');
+ writeln('| Como vocÃª deseja ordenar os candidatos?|');
+ writeln('| 1 - NÃºmero de inscriÃ§Ã£o                |');
  writeln('| 2 - Nome                               |');
  writeln('| 3 - CPF                                |');
  writeln('| 4 - Cargo e nome                       |');
  writeln('------------------------------------------');
- leitura('Opção ',opt); 
+ leitura('OpÃ§Ã£o ',opt); 
  assign(arq, 'cand.ind');
  reset(arq);
  repeat
@@ -38,7 +37,7 @@ Begin
   vet[a].pf:= posi;
   read(arq,reg);
   case opt of
-   1: begin; str(reg.num:4, chave); relatorio:= 'Número de inscrição'; end;
+   1: begin; str(reg.num:4, chave); relatorio:= 'NÃºmero de inscriÃ§Ã£o'; end;
    2: begin; chave:= reg.nome; relatorio:= 'Nome';  end;
    3: begin; chave:= reg.cpf; relatorio:= 'CPF';  end;
    4: begin; str(reg.car:2, chave); chave:=chave+reg.nome; relatorio:= 'Cargo e nome';  end;
