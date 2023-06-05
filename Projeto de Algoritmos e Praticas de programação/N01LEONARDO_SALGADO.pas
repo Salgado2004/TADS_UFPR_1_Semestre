@@ -8,42 +8,42 @@ mostrar a palavra ERRO e a resposta que será 0(zero).}
 //VERSÃO COM IF
 
 var n1, n2, result: real;
-		ops: string[1];
+    ops: string[1];
 
 Begin
-	writeln('Trabalho 1: Calculador básico');
-	writeln();
-	writeln('Digite o primeito número e pressione Enter: ');
-	readln(n1);
-	writeln('Digite o segundo número e pressione Enter: ');
-	readln(n2);
-	writeln('Digite a operação desejada (+, -, *, /) e pressione Enter: ');
-	readln(ops);
-	writeln();
-	writeln('Realizando operação: ', n1, ops, n2);
-	if (ops = '+') then
-		begin
-			result := n1+n2;
-			writeln('Resultado: ', result);
-		end;
-	if (ops = '-') then
-		begin
-			result := n1-n2;
-			writeln('Resultado: ', result);
-		end;
-	if (ops = '*') then
-		begin
-			result := n1*n2;
-			writeln('Resultado: ', result);
-		end;
-	if (ops = '/') then
-		begin
-			if (n2 = 0) then
-				writeln('ERRO: Divisão por 0')
-			else
-				result := n1/n2;
-				writeln('Resultado: ', result);
-		end;
+ writeln('Trabalho 1: Calculador básico');
+ writeln();
+ writeln('Digite o primeito número e pressione Enter: ');
+ readln(n1);
+ writeln('Digite o segundo número e pressione Enter: ');
+ readln(n2);
+ writeln('Digite a operação desejada (+, -, *, /) e pressione Enter: ');
+ readln(ops);
+ writeln();
+ writeln('Realizando operação: ', n1, ops, n2);
+ if (ops = '+') then
+  begin
+   result := n1+n2;
+   writeln('Resultado: ', result);
+  end;
+ if (ops = '-') then
+  begin
+   result := n1-n2;
+   writeln('Resultado: ', result);
+  end;
+ if (ops = '*') then
+  begin
+   result := n1*n2;
+   writeln('Resultado: ', result);
+  end;
+ if (ops = '/') then
+  begin
+   if (n2 = 0) then
+    writeln('ERRO: Divisão por 0')
+   else
+    result := n1/n2;
+    writeln('Resultado: ', result);
+  end;
 End.
 
 // VERSÃO COM CASE
