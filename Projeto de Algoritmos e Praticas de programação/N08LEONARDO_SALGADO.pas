@@ -85,6 +85,6 @@ Begin
  writeln('Média final por disciplina: ');
  //Calcula as médias por disciplina considerando somente os candidatos que fizeram a prova
  for b:=1 to 6 do
-  writeln(disciplinas[b], '--> ', medias[b]/total:4);
+  writeln(disciplinas[b], '--> ', medias[b]/total:5);
  writeln('Total de candidatos que realizaram a prova:', total:5);
 End.
