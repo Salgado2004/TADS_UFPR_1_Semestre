@@ -2,9 +2,9 @@ Program N10LEONARDO_SALGADO;
 //Feito por Leonardo Felipe Salgado
 
 {FUP que possibilite mostrar os dados do arquivo CAND.IND conforme abaixo:
-1 – Todos os candidatos CLASSIFICADOS nos cargos em ordem alfabética ou, 2 – Todos os candidatos em
-ordem de classificação por cargo ou, 3 – Todos os candidatos em ordem de classificação geral. Dar as 
-três opções para o usuário escolher uma.}
+1 â€“ Todos os candidatos CLASSIFICADOS nos cargos em ordem alfabÃ©tica ou, 2 â€“ Todos os candidatos em
+ordem de classificaÃ§Ã£o por cargo ou, 3 â€“ Todos os candidatos em ordem de classificaÃ§Ã£o geral. Dar as 
+trÃªs opÃ§Ãµes para o usuÃ¡rio escolher uma.}
 uses bibliont;
 
 const cargos:array [1..12] of string[22]=
@@ -27,22 +27,22 @@ procedure cabecalho2(relat:string[26]; subtitle:string[22]; var pag:integer);
   readln;
   clrscr;
   pag:=pag+1;
-  writeln('          ', relat, subtitle,'             Página: ', pag);
+  writeln('          ', relat, subtitle,'             PÃ¡gina: ', pag);
   writeln;
   writeln(' NUM: NOME:                                CLG:  CLC: CARGO:  FALTOU:');
  end;
 
 Begin
  writeln('---------------------------------------------');
- writeln('| Trabalho 10: Classificação dos candidatos |');
+ writeln('| Trabalho 10: ClassificaÃ§Ã£o dos candidatos |');
  writeln('|                                           |');
- writeln('| Como você deseja mostrar os candidatos?   |');
+ writeln('| Como vocÃª deseja mostrar os candidatos?   |');
  writeln('| 1 - Candidatos CLASSIFICADOS por nome     |');
  writeln('| 2 - Todos os candidatos por cargo         |');
  writeln('| 3 - Todos os candidatos no geral          |');
  writeln('---------------------------------------------');
- //Escolhe a opção que será usada para ordenar o vetor
- leitura('Opção ',opt); 
+ //Escolhe a opÃ§Ã£o que serÃ¡ usada para ordenar o vetor
+ leitura('OpÃ§Ã£o ',opt); 
  assign(arq, 'cand.ind');
  reset(arq);
  //Cria o vetor para ordenar
@@ -50,11 +50,11 @@ Begin
   a:= a+1;
   vet[a].pf:= posi;
   read(arq,reg);
-  //Seleciona a chave para ordenar o vetor pela escolha do usuário
+  //Seleciona a chave para ordenar o vetor pela escolha do usuÃ¡rio
   case opt of
    1: begin; str(reg.car:2, chave); str(reg.ccl:4,aux); chave:=chave+aux+reg.nome; relatorio:='Classificados: '; end;
-   2: begin; str(reg.car:2, chave); str(reg.clc:4,aux); chave:=chave+aux; relatorio:='Classificação por cargo: '; end;
-   3: begin; str(reg.clg:4, chave); relatorio:='Classificação geral'; end;
+   2: begin; str(reg.car:2, chave); str(reg.clc:4,aux); chave:=chave+aux; relatorio:='ClassificaÃ§Ã£o por cargo: '; end;
+   3: begin; str(reg.clg:4, chave); relatorio:='ClassificaÃ§Ã£o geral'; end;
   end;
   vet[a].cc:=chave;
   posi:= posi+1;
@@ -69,19 +69,19 @@ Begin
    //Mostra os candidados na ordem do vetor ordenado
    seek(arq,vet[a].pf);
    read(arq, reg);
-   //Mostra o nome do cargo se a opção não for Classificação geral
+   //Mostra o nome do cargo se a opÃ§Ã£o nÃ£o for ClassificaÃ§Ã£o geral
    if (opt <> 3) then
     subtitulo:=cargos[reg.car];
-   //Mostra o cabeçalho a cada 20 linhas OU a cada mudança de cargo
+   //Mostra o cabeÃ§alho a cada 20 linhas OU a cada mudanÃ§a de cargo
    if (contlin = 20) or (cargo <> reg.car) and (opt <> 3) then
     begin
-		 cabecalho2(relatorio, subtitulo, pagina);
-		 contlin:=0;
-		end;
-	 //Não mostra os candidatos não classificados se a opção for 1
-	 if (opt <> 1) or (reg.ccl <> 0) then
-	  begin
-	   //Escreve somente as informações relevantes do candidato
+     cabecalho2(relatorio, subtitulo, pagina);
+     contlin:=0;
+    end;
+   //NÃ£o mostra os candidatos nÃ£o classificados se a opÃ§Ã£o for 1
+   if (opt <> 1) or (reg.ccl <> 0) then
+    begin
+     //Escreve somente as informaÃ§Ãµes relevantes do candidato
      write(reg.num:5,' ',reg.nome,' ');
      writeln(reg.clg:5, reg.clc:5, reg.ccl:5, reg.falta:6);
      contlin:= contlin+1;
