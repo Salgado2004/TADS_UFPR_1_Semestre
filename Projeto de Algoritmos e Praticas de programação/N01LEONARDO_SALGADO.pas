@@ -49,28 +49,28 @@ End.
 // VERSÃO COM CASE
 
 {var n1, n2, result: real;
-		ops: char;
+     ops: char;
 
 Begin
-	writeln('Trabalho 1: Calculador básico');
-	writeln();
-	writeln('Digite o primeito número e pressione Enter: ');
-	readln(n1);
-	writeln('Digite o segundo número e pressione Enter: ');
-	readln(n2);
-	writeln('Digite a operação desejada (+, -, *, /) e pressione Enter: ');
-	readln(ops);
-	writeln();
-	writeln('Realizando operação: ', n1, ops, n2);
-	case ops of
-		'+': result := n1+n2;
-		'-': result := n1-n2;
-		'*': result := n1*n2;
-		'/': if (n2 = 0) then
-					writeln('ERRO: Divisão por 0')
-				 else
-					result := n1/n2;
-	end;
-	writeln('Resultado: ', result);
+ writeln('Trabalho 1: Calculador básico');
+ writeln();
+ writeln('Digite o primeito número e pressione Enter: ');
+ readln(n1);
+ writeln('Digite o segundo número e pressione Enter: ');
+ readln(n2);
+ writeln('Digite a operação desejada (+, -, *, /) e pressione Enter: ');
+ readln(ops);
+ writeln();
+ writeln('Realizando operação: ', n1, ops, n2);
+ case ops of
+  '+': result := n1+n2;
+  '-': result := n1-n2;
+  '*': result := n1*n2;
+  '/': if (n2 = 0) then
+        writeln('ERRO: Divisão por 0')
+       else
+	result := n1/n2;
+       end;
+ writeln('Resultado: ', result);
 End.}
 
