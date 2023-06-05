@@ -11,8 +11,7 @@ const vagas:array[1..12] of integer=
 var arq: file of regis;
     reg: regis;
     chave: string[35];
-    relatorio: string[20];
-    a, b,erro,contlin,idade,tot,posi,pagina: integer;
+    a,b,erro,idade,tot,posi: integer;
     notas:array[1..6] of string[4];
     clc:array[1..12] of integer;
     idd:string[2];
