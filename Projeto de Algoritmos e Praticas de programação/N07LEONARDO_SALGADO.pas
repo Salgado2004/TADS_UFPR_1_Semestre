@@ -29,13 +29,16 @@ Begin
  writeln('| 3 - CPF                                |');
  writeln('| 4 - Cargo e nome                       |');
  writeln('------------------------------------------');
+ //Escolhe a opção que será usada para ordenar o vetor
  leitura('Opção ',opt); 
  assign(arq, 'cand.ind');
  reset(arq);
+ //Cria o vetor para ordenar
  repeat
   a:= a+1;
   vet[a].pf:= posi;
   read(arq,reg);
+  //Seleciona a chave para ordenar o vetor pela escolha do usuário
   case opt of
    1: begin; str(reg.num:4, chave); relatorio:= 'Número de inscrição'; end;
    2: begin; chave:= reg.nome; relatorio:= 'Nome';  end;
@@ -51,6 +54,7 @@ Begin
  clrscr; 
  for a:=1 to tot do
   begin;
+   //Mostra os candidados na ordem do vetor ordenado
    seek(arq,vet[a].pf);
    read(arq, reg);
    if (reg.car > 0) then
@@ -66,6 +70,7 @@ Begin
  close(arq);
  writeln;
  writeln('Total de inscritos por cargo:');
+ //Mostra a quantidade de inscritos por cargo
  for b:=1 to 12 do
   writeln(cargos[b], '-->', totcargos[b]:4);
  writeln('Total de candidatos:', tot:5);
