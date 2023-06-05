@@ -1,8 +1,8 @@
 Program N09LEONARDO_SALGADO;
 //Feito por Leonardo Felipe Salgado
 
-{FUP que atualize os campos CLG (classificação geral), CLC (classificação no cargo) e CCL (cargo de
-classificação) no arquivo CAND.IND, conforme critérios da folha anterior.}
+{FUP que atualize os campos CLG (classificaÃ§Ã£o geral), CLC (classificaÃ§Ã£o no cargo) e CCL (cargo de
+classificaÃ§Ã£o) no arquivo CAND.IND, conforme critÃ©rios da folha anterior.}
 uses bibliont;
 
 const vagas:array[1..12] of integer=
@@ -19,7 +19,7 @@ var arq: file of regis;
     vet: vetor;
 
 Begin
- writeln('Trabalho 09: Atualizando classificação geral e por cargo');
+ writeln('Trabalho 09: Atualizando classificaÃ§Ã£o geral e por cargo');
  assign(arq, 'cand.ind');
  reset(arq);
  //Cria o vetor para ordenar os candidatos por notas
@@ -32,7 +32,7 @@ Begin
   val(reg.data.ano,idade,erro);
   str(2023-idade,idd);
   str(reg.som:3,chave);
-  //Cria a chave de ordenação com base nos critérios de desempate
+  //Cria a chave de ordenaÃ§Ã£o com base nos critÃ©rios de desempate
   chave:=chave+notas[4]+notas[5]+notas[3]+notas[2]+notas[6]+notas[1]+idd;
   vet[a].cc:=chave;
   posi:= posi+1;
@@ -41,27 +41,27 @@ Begin
  //Ordena os candidatos por notas
  writeln('Ordenando candidatos por notas...');
  ordem(vet,tot);
- //Atualiza a classificação geral
- writeln('Atualizando classificação geral e por cargo...');
+ //Atualiza a classificaÃ§Ã£o geral
+ writeln('Atualizando classificaÃ§Ã£o geral e por cargo...');
  posi:=0;
  for a:=tot downto 1 do
   begin; 
    seek(arq,vet[a].pf);
    read(arq, reg);
-   //Atualiza a classificação geral
-	 posi:=posi+1;
-	 reg.clg:=posi;
-	 //Atualiza a classificação por cargo
-	 clc[reg.car]:=clc[reg.car]+1;
-	 reg.clc:=clc[reg.car];
-	 //Verifica se a classificação do candidato esta dentro do número de vagas disponíveis
-	 if (reg.clc <= vagas[reg.car]) then
-	  reg.ccl:=reg.car;
-   //Registra as atualizações
+   //Atualiza a classificaÃ§Ã£o geral
+   posi:=posi+1;
+   reg.clg:=posi;
+   //Atualiza a classificaÃ§Ã£o por cargo
+   clc[reg.car]:=clc[reg.car]+1;
+   reg.clc:=clc[reg.car];
+   //Verifica se a classificaÃ§Ã£o do candidato esta dentro do nÃºmero de vagas disponÃ­veis
+   if (reg.clc <= vagas[reg.car]) then
+    reg.ccl:=reg.car;
+   //Registra as atualizaÃ§Ãµes
    seek(arq,vet[a].pf);
    write(arq, reg);
   end;
  close(arq);
- writeln('Classificação dos candidatos atualizada com sucesso!');
+ writeln('ClassificaÃ§Ã£o dos candidatos atualizada com sucesso!');
  fim;
 End.
