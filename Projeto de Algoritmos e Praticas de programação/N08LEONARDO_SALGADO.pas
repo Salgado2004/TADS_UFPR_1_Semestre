@@ -2,14 +2,13 @@ Program N08LEONARDO_SALGADO;
 //Feito por Leonardo Felipe Salgado
 
 {FUP que atualize os campos das 6 notas e o campo soma das notas dos registros do arquivo CAND.IND, dos
-candidatos presentes. Antes, executar o programa MARCAFALTAS.PAS, (atualiza o campo reg.falta com 1) 
-enviado. Antes de encerrar, mostrar a média das 6 disciplinas.}
+candidatos presentes. Antes de encerrar, mostrar a mÃ©dia das 6 disciplinas.}
 
 //Gabarito: AAAAAAAABBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDEEEEEEEE
 uses bibliont;
 
 const disciplinas: array[1..6] of string[20]=
-('L.E.M. ', 'Matemática ', 'Lógica ', 'Conhecimento espec. ', 'Informática ', 'Atualidades ');
+('L.E.M. ', 'MatemÃ¡tica ', 'LÃ³gica ', 'Conhecimento espec. ', 'InformÃ¡tica ', 'Atualidades ');
 
 var arq: file of regis;
     arq2:text;
@@ -27,7 +26,7 @@ Begin
  assign(arq2,'notas.txt');
  reset(arq);
  reset(arq2);
- //Cria o vetor para ordenar os candidatos por número de inscrição
+ //Cria o vetor para ordenar os candidatos por nÃºmero de inscriÃ§Ã£o
  repeat
   a:= a+1;
   vet[a].pf:= posi;
@@ -40,15 +39,15 @@ Begin
   posi:= posi+1;
  until eof(arq);
  tot:= a;
- //Ordena os candidatos por número de inscrição
+ //Ordena os candidatos por nÃºmero de inscriÃ§Ã£o
  writeln('Ordenando candidatos...');
  ordem(vet,tot);
  writeln('Registrando notas...');
- //Lê as notas e atualiza no Cand.ind pelo número de inscrição
+ //LÃª as notas e atualiza no Cand.ind pelo nÃºmero de inscriÃ§Ã£o
  repeat
   readln(arq2,candnotas);
   b:=5;
-  //Lê as notas do notas.txt
+  //LÃª as notas do notas.txt
   for a:=1 to 6 do
    begin
     val(copy(candnotas,b,4),notas[a],e);
@@ -56,9 +55,9 @@ Begin
     medias[a]:=medias[a]+notas[a];
     b:=b+4;
    end;
-  //Pesquisa a posição do candidado no vetor  
+  //Pesquisa a posiÃ§Ã£o do candidado no vetor  
   pebin1(vet,copy(candnotas,1,4),tot,posi); 
-  //Abre o registro do candidato pela posição física
+  //Abre o registro do candidato pela posiÃ§Ã£o fÃ­sica
   seek(arq,vet[posi].pf);
   read(arq,reg);
   //Atualiza os dados do candidato
@@ -83,8 +82,8 @@ Begin
  close(arq);
  close(arq2);
  writeln;
- writeln('Média final por disciplina: ');
- //Calcula as médias por disciplina considerando somente os candidatos que fizeram a prova
+ writeln('MÃ©dia final por disciplina: ');
+ //Calcula as mÃ©dias por disciplina considerando somente os candidatos que fizeram a prova
  for b:=1 to 6 do
   writeln(disciplinas[b], '--> ', medias[b]/total:4);
  writeln('Total de candidatos que realizaram a prova:', total:5);
