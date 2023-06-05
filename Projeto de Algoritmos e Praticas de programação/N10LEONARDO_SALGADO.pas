@@ -76,19 +76,19 @@ Begin
    //Mostra o cabeçalho a cada 20 linhas OU a cada mudança de cargo
    if (contlin = 25) or ((cargo <> reg.car) and (opt <> 3)) then
     begin
-		   cabecalho2(relatorio, subtitulo, pagina);
-		   contlin:=0;
-		  end;
-	  //Não mostra os candidatos não classificados se a opção for 1
-	  if (opt <> 1) or (reg.ccl <> 0) then
-	   begin
-	    //Escreve somente as informações relevantes do candidato
-      write(reg.num:5,' ',reg.nome,' ');
-      writeln(reg.clg:5, reg.clc:5, reg.ccl:5, reg.falta:6);
-      contlin:= contlin+1;
+     cabecalho2(relatorio, subtitulo, pagina);
+     contlin:=0;
+    end;
+   //Não mostra os candidatos não classificados se a opção for 1
+   if (opt <> 1) or (reg.ccl <> 0) then
+    begin
+     //Escreve somente as informações relevantes do candidato
+     write(reg.num:5,' ',reg.nome,' ');
+     writeln(reg.clg:5, reg.clc:5, reg.ccl:5, reg.falta:6);
+     contlin:= contlin+1;
     end;  
    cargo:=reg.car;
-  end;
+ end;
  close(arq);
  fim; 
 End.
