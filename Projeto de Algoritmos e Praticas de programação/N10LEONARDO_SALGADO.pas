@@ -47,8 +47,6 @@ Begin
  reset(arq);
  //Cria o vetor para ordenar
  repeat
-  a:= a+1;
-  vet[a].pf:= posi;
   read(arq,reg);
   //Seleciona a chave para ordenar o vetor pela escolha do usuário
   case opt of
@@ -56,7 +54,13 @@ Begin
    2: begin; str(reg.car:2, chave); str(reg.clc:4,aux); chave:=chave+aux; relatorio:='Classificação por cargo: '; end;
    3: begin; str(reg.clg:4, chave); relatorio:='Classificação geral'; end;
   end;
-  vet[a].cc:=chave;
+  //Não mostra os candidatos não classificados se a opção for 1
+  if (opt <> 1) or (reg.ccl <> 0) then
+   begin 
+    a:= a+1;
+    vet[a].pf:= posi;  
+    vet[a].cc:=chave;
+   end;
   posi:= posi+1;
  until eof(arq);
  tot:= a;
@@ -79,16 +83,12 @@ Begin
      cabecalho2(relatorio, subtitulo, pagina);
      contlin:=0;
     end;
-   //Não mostra os candidatos não classificados se a opção for 1
-   if (opt <> 1) or (reg.ccl <> 0) then
-    begin
-     //Escreve somente as informações relevantes do candidato
-     write(reg.num:5,' ',reg.nome,' ');
-     writeln(reg.clg:5, reg.clc:5, reg.ccl:5, reg.falta:6);
-     contlin:= contlin+1;
-    end;  
+   //Escreve somente as informações relevantes do candidato
+   write(reg.num:5,' ',reg.nome,' ');
+   writeln(reg.clg:5, reg.clc:5, reg.ccl:5, reg.falta:6);
+   contlin:= contlin+1; 
    cargo:=reg.car;
- end;
+  end;
  close(arq);
  fim; 
 End.
