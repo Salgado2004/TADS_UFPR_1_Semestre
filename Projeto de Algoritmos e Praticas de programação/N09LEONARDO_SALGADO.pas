@@ -14,7 +14,7 @@ var arq: file of regis;
     a,b,erro,idade,tot,posi: integer;
     notas:array[1..6] of string[4];
     clc:array[1..12] of integer;
-    idd:string[2];
+    idd:string[8];
     vet: vetor;
 
 Begin
@@ -28,8 +28,9 @@ Begin
   read(arq,reg);
   for b:=1 to 6 do
    str(reg.notas[b]:4,notas[b]);
-  val(reg.data.ano,idade,erro);
-  str(2023-idade,idd);
+  idd:=reg.data.ano+reg.data.mes+reg.data.dia;
+  val(idd,idade,erro);
+  str(20230606-idade,idd);
   str(reg.som:3,chave);
   //Cria a chave de ordenação com base nos critérios de desempate
   chave:=chave+notas[4]+notas[5]+notas[3]+notas[2]+notas[6]+notas[1]+idd;
