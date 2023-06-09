@@ -21,7 +21,7 @@ var arq: file of regis;
     a, b, contlin, pagina, tot, posi, opt,cargo: integer;
     vet: vetor;
 
-procedure cabecalho2(relat:string[26]; subtitle:string[22]; var pag:integer);
+procedure cabecalho2(relat:string[26]; subtitle:string[22]; opt:integer; var pag:integer);
  begin
   write('Aperte enter para continuar');
   readln;
@@ -29,7 +29,10 @@ procedure cabecalho2(relat:string[26]; subtitle:string[22]; var pag:integer);
   pag:=pag+1;
   writeln('          ', relat, subtitle,'             Página: ', pag);
   writeln;
-  writeln(' NUM: NOME:                                CLG:  CLC: CARGO:  FALTOU:');
+  write(' NUM: NOME:                                CLG: CLC:');
+  if (opt > 1) then
+   write(' SOM: N4: N5: N3: N2: N6: N1:  NASCI:  '); 
+  writeln('  CARGO:  FALTOU:');
  end;
 
 Begin
@@ -80,12 +83,15 @@ Begin
    //Mostra o cabeçalho a cada 20 linhas OU a cada mudança de cargo
    if (contlin = 25) or ((cargo <> reg.car) and (opt <> 3)) then
     begin
-     cabecalho2(relatorio, subtitulo, pagina);
+     cabecalho2(relatorio, subtitulo,opt, pagina);
      contlin:=0;
     end;
    //Escreve somente as informações relevantes do candidato
    write(reg.num:5,' ',reg.nome,' ');
-   writeln(reg.clg:5, reg.clc:5, reg.ccl:5, reg.falta:6);
+   write(reg.clg:5, reg.clc:5);
+   if (opt > 1) then
+    write(reg.som:4, reg.notas[4]:4, reg.notas[5]:4, reg.notas[3]:4, reg.notas[2]:4, reg.notas[6]:4, reg.notas[1]:4,' ', reg.data.dia, '/', reg.data.mes, '/', reg.data.ano);
+	 writeln(reg.ccl:5, reg.falta:6);
    contlin:= contlin+1; 
    cargo:=reg.car;
   end;
