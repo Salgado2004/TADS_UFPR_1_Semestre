@@ -1,3 +1,5 @@
+#Feito pelo professor
+
 # A[0] = 15;
 # A[1] = 15;
 # A[2] = 15;
