@@ -4,6 +4,23 @@
 #Leonardo Felipe Salgado
 #Raul Ferreira Bana
 
+Navegar(){
+locali=$1
+user=$2
+file=($@)
+echo "Navegar entre as pastas: "
+echo "Selecione o índice da pasta que deseja entrar"
+echo "Ou digite * para voltar"
+read nav
+if [ $nav = "*" ]; then
+ echo "volta pasta"
+fi
+nav=$((nav + 2))
+locali=$locali"/"${file[nav]}
+echo "$locali"
+Menu $locali $2
+}
+
 Menu(){
 echo
 locali=$1
@@ -11,14 +28,16 @@ user=$2
 echo "Local: $locali"
 pasta=(`ls $locali`) #Recebe os arquivos da pasta atual
 
+cont=0 #Cria um contador de índices
 echo -n "Arquivos: "
 for file in ${pasta[@]}; do #Mostra os arquivos um por um
  typeF=(`file $locali/$file`)
  if [ ${typeF[1]} = "directory" ]; then #Formata em negrito as pastas
-  echo -n -e "\033[01;32m$file\033[00;37m "
+  echo -n -e "\033[01;32m$file\033[00;37m($cont) "
  else
-  echo -n "$file " #Formata normal os arquivos
+  echo -n "$file($cont) " #Formata normal os arquivos
  fi
+ cont=$((cont + 1))
 done
 
 echo #Mostra opções para o usuário
@@ -29,7 +48,7 @@ echo "3 - sair"
 read action
 case $action in #Vê a opção escolhida
  1) echo "Você escolheu 1";;
- 2) echo "Você escolheu 2";;
+ 2) Navegar $1 $2 ${pasta[@]};;
  3) exit;;
  *) Menu $1 $2;; 
 esac
