@@ -1,4 +1,3 @@
-                 
 #!/bin/bash
 #Feito por:
 #Alisson Gabriel dos Santos
@@ -10,7 +9,7 @@ echo
 locali=$1
 user=$2
 echo "Local: $locali"
-pasta=(`ls /home/$user`)
+pasta=(`ls $locali`)
 echo "Arquivos: ${pasta[@]}"
 echo "O que você deseja fazer?"
 echo "1 - Selecionar arquivos para backup"
@@ -26,11 +25,11 @@ esac
 }
 
 Principal(){
+clear
 echo "Projeto Final - Sistema de Backup de Arquivos"
-locali=`pwd`
 user=`id -un`
+locali="/home/$user"
 Menu $locali $user
 }
 
 Principal
-
