@@ -10,13 +10,14 @@ Realizar_backup(){
  echo
  echo "Arquivos para backup: ${origem[@]}"
  echo "Pasta de destino: $destino"
- for file in ${origem[@]}; do
+ echo
+ for file in ${origem[@]}; do #Para cada arquivo de origem, faz o backup para destino
   rsync -avz --progress $file $destino
  done
  echo
- echo -e "\033[05mBackup realizado!\033[00m"
+ echo -e "\033[05mBackup realizado!\033[00m" #Mostra o texto piscando para ficar legal
  read enter
- Menu $locali $user
+ Menu $locali $user #Volta para o menu
 }
 
 Criar_pasta(){ #Permite ao usuário criar uma pasta de destino
