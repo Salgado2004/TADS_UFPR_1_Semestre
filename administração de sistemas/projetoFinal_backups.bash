@@ -4,24 +4,31 @@
 #Leonardo Felipe Salgado
 #Raul Ferreira Bana
 
-Navegar(){
+Navegar(){ #Permite ao usuário navegar e visualizar as pastas e arquivos
 locali=$1
 user=$2
 file=($@)
-echo "Navegar entre as pastas: "
+echo "Navegar entre as pastas: " #Explica como funciona
 echo "Selecione o índice da pasta que deseja entrar"
-echo "Ou digite * para voltar"
+echo "Ou digite 00 para voltar"
 read nav
-if [ $nav = "*" ]; then
- echo "volta pasta"
+if [ $nav = "00" ]; then #Se ele desejar voltar, o sistema modifica sozinho o local
+ nav=(${locali//"/"/ })
+ lenght=${#nav[@]}
+ echo $lenght
+ locali=""
+ for ((i=0;i<$lenght-1;i++)); do
+ locali=$locali/${nav[i]}
+ done
+else #Se ele desejar avançar, o sistema busca a pasta escolhida pelo indice e atualiza o local
+ nav=$((nav + 2))
+ locali=$locali"/"${file[nav]}
 fi
-nav=$((nav + 2))
-locali=$locali"/"${file[nav]}
-echo "$locali"
-Menu $locali $2
+Menu $locali $2 #Chama o menu novamente
 }
 
 Menu(){
+clear
 echo
 locali=$1
 user=$2
@@ -32,11 +39,12 @@ cont=0 #Cria um contador de índices
 echo -n "Arquivos: "
 for file in ${pasta[@]}; do #Mostra os arquivos um por um
  typeF=(`file $locali/$file`)
- if [ ${typeF[1]} = "directory" ]; then #Formata em negrito as pastas
-  echo -n -e "\033[01;32m$file\033[00;37m($cont) "
- else
-  echo -n "$file($cont) " #Formata normal os arquivos
- fi
+ case ${typeF[1]} in
+ "directory")  echo -n -e "\033[01;32m$file\033[00;37m($cont)  ";; #Formata em negrito as pastas
+ "Bourne-Again") echo -n -e "\033[01;31m$file\033[00;37m($cont)  ";;
+ "Unicode") echo -n -e "\033[00;34m$file\033[00;37m($cont)  ";;
+ *) echo -n "$file($cont)  ";; #Formata normal os arquivos
+ esac
  cont=$((cont + 1))
 done
 
