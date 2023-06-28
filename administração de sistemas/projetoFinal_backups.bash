@@ -8,16 +8,27 @@ Realizar_backup(){
  clear
  echo -e "\033[01;37mRealizar backup\033[00;37m"
  echo
+ echo "Confirmação: " #Pede a confirmação do usuário para prosseguir
  echo "Arquivos para backup: ${origem[@]}"
  echo "Pasta de destino: $destino"
  echo
- for file in ${origem[@]}; do #Para cada arquivo de origem, faz o backup para destino
-  rsync -avz --progress $file $destino
- done
- echo
- echo -e "\033[05mBackup realizado!\033[00m" #Mostra o texto piscando para ficar legal
- read enter
- Menu $locali $user #Volta para o menu
+ echo "1 - Prosseguir com o backup"
+ echo "2 - Cancelar"
+ read confirm
+ case $confirm in
+  1) echo "Realizando backup...";;
+  2) Menu $locali $user;;
+  *) Realizar_backup;;
+ esac
+ if [ $confirm = 1 ]; then 
+  for file in ${origem[@]}; do #Para cada arquivo de origem, faz o backup para destino
+   rsync -avzh --progress --delete $file $destino
+  done
+  echo
+  echo -e "\033[05mBackup realizado!\033[00m" #Mostra o texto piscando para ficar legal
+  read enter
+  Menu $locali $user #Volta para o menu
+ fi
 }
 
 Criar_pasta(){ #Permite ao usuário criar uma pasta de destino
@@ -62,6 +73,7 @@ Selecionar_origem(){ #Permite ao usuário selecionar os arquivos de origem
  echo "Digite os índices dos arquivos e/ou pastas desejados, separados por espaço ' ', e aperte ENTER para confirmar"
  read indices #Lê os arquivos
  indices=($indices) #Transforma em vetor
+ origem=""
  for indice in ${indices[@]}; do
   origem=(${origem[@]} "$locali/${files[indice]}")
  done
