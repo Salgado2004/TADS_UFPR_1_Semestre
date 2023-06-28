@@ -73,6 +73,7 @@ Selecionar_origem(){ #Permite ao usuário selecionar os arquivos de origem
  echo "Digite os índices dos arquivos e/ou pastas desejados, separados por espaço ' ', e aperte ENTER para confirmar"
  read indices #Lê os arquivos
  indices=($indices) #Transforma em vetor
+ origem=()
  for indice in ${indices[@]}; do
   origem=(${origem[@]} "$locali/${files[indice]}")
  done
