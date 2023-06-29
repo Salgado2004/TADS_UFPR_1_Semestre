@@ -20,9 +20,15 @@ Realizar_backup(){
   2) Menu $locali $user;;
   *) Realizar_backup;;
  esac
- if [ $confirm = 1 ]; then 
+ if [ $confirm = 1 ]; then
+  data=(`date`) # Recebe a data do momento em que o backup será realizado
+  logfile="$locali/logsync"
+  for x in ${data[@]}; do #Escreve a data numa variável sem espaços
+   logfile=$logfile"_"$x 
+  done
+  logfile="$logfile.txt" 
   for file in ${origem[@]}; do #Para cada arquivo de origem, faz o backup para destino
-   rsync -avzh --progress --delete $file $destino
+   rsync -avzh --progress --delete --log-file=$logfile $file $destino
   done
   echo
   echo -e "\033[05mBackup realizado!\033[00m" #Mostra o texto piscando para ficar legal
